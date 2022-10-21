@@ -1,0 +1,49 @@
+nav {
+    background-color: blueviolet;
+    text-align: center;
+}
+
+nav, 
+button {
+    color: whitesmoke;
+}
+
+nav h1 {
+    padding: 5px;
+   
+}
+
+.Form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Inputs {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.InputTag {
+    height: 30px;
+    border-radius: 5px;
+    border: 2px solid blueviolet;
+    padding: 10px 3px;
+}
+
+.InputTag:focus {
+    border: 2px solid salmon;
+}
+
+button {
+    margin: auto;
+    width: 380px;
+    max-width: 100%;
+    margin-top: 30px;
+    font-size: 20px;
+    background-color: blueviolet;
+    cursor: pointer;
+}
+
