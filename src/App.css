@@ -58,6 +58,7 @@ button {
 .memeImage {
     max-width: 100%;
     height: 400px;
+    margin: 0px 10px;
 }
 
 .memeText {

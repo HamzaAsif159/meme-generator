@@ -1,5 +1,5 @@
 import React from "react";
-import memesData from "../src/memesData.js";
+
 
 export default function Meme(){
     const [meme, setMeme] = React.useState({
@@ -8,12 +8,17 @@ export default function Meme(){
         randomImage: "http://i.imgflip.com/1bij.jpg"
     });
 
-    const [allMemeImages, setAllMemeImage] = React.useState(memesData)
+    const [allMeme, setAllMeme] = React.useState([])
 
+    React.useEffect(function() {
+        fetch("https://api.imgflip.com/get_memes")
+            .then(res => res.json())
+            .then(data => setAllMeme(data.data.memes))
+    }, [])
+    
     function getMemeImage() {
-        const memesArray = memesData.data.memes;
-        const randomNumber = Math.floor(Math.random() * memesArray.length);
-        const url = memesArray[randomNumber].url
+        const randomNumber = Math.floor(Math.random() * allMeme.length);
+        const url = allMeme[randomNumber].url
         setMeme(prevState => ({
                 ...prevState,
                 randomImage: url
@@ -35,6 +40,7 @@ export default function Meme(){
         <div>
             <div className="Form">
                 <div className="Inputs">
+
                     <input 
                     type="text" 
                     className="InputTag"
@@ -42,8 +48,8 @@ export default function Meme(){
                     name="topText"
                     value={meme.topText}
                     onChange= {handleChange}
-                    
                     />
+                    
                     <input 
                     type="text" 
                     className="InputTag"
@@ -51,12 +57,14 @@ export default function Meme(){
                     name="bottomText"
                     value={meme.bottomText}
                     onChange= {handleChange}
-                    
                     />
+
                 </div>
+
                 <button onClick={getMemeImage}>
                 Get a new meme image  🖼
                 </button>
+
             </div>
             <div className = "Meme">
                 <img src={meme.randomImage} className="memeImage"/>
